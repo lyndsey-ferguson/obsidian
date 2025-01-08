@@ -1,0 +1,19 @@
+{
+  "name": "obsidian",
+  "version": "1.0.0",
+  "description": "JavaScripts and CSS for my Obsidian Notes",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "updateVault": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.7.0"
+  },
+  "devDependencies": {
+    "jest-environment-obsidian": "^0.0.1"
+  }
+}
