@@ -1,3 +1,5 @@
 {
-  "userIgnoreFilters": null
+  "userIgnoreFilters": null,
+  "vimMode": true,
+  "showLineNumber": true
 }
