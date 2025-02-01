@@ -8,6 +8,15 @@ function getRandomRule(rules) {
     return rules[randomRuleIndex].trim();
 }
 
+/*
+    Call this from your markdown with templater
+
+    <% tp.user.getRandomRuleOfLife("path/to/rules-of-life.md") %>
+
+    Example:
+
+    <% tp.user.getRandomRuleOfLife("TestFixtures/FakeRulesOfLife.md") %>
+*/
 function getRandomRuleOfLife (rulesOfLifeFilePath) {
     return getFileContents(rulesOfLifeFilePath).then(value => {
         const regex = /\d+\.\s*(.*)(:?\n|$)/g; 
