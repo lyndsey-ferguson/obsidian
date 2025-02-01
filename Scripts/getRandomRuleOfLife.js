@@ -27,7 +27,6 @@ function getRandomRuleOfLife (rulesOfLifeFilePath) {
             rules.push(match[1]);
         }
         const rule = getRandomRule(rules);
-        console.log(`random rule: ${rule}`);
         return rule;
     });
 }
