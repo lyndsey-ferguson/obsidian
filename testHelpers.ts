@@ -1,3 +1,5 @@
+const path = require('path');
+
 function localFileRead(path) {
   return new Promise((resolve, reject) => {
       const fs = require('fs');
@@ -12,11 +14,18 @@ function localFileRead(path) {
   });
 }
 
+function tfileFromPath(filepath) {
+  return {
+    basename: path.basename(filepath),
+    extension: path.extname(filepath),
+    path: filepath
+  }
+}
 function mockObsidianApp() {
   return {
     vault : {
-      getFileByPath : jest.fn(path => path),
-      cachedRead: jest.fn(path => localFileRead(path)) 
+      getFileByPath : jest.fn(filepath => tfileFromPath(filepath)),
+      cachedRead: jest.fn(tfile => localFileRead(tfile.path))
     }
   };
 }
