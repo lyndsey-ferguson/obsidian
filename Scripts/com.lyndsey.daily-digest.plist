@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.lyndsey.daily-digest</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/python3</string>
+        <string>/Users/lyndsey/.claude/scripts/daily-digest.py</string>
+    </array>
+
+    <key>WatchPaths</key>
+    <array>
+        <string>/Users/lyndsey/Library/Mobile Documents/iCloud~md~obsidian/Documents/Lyndsey/📓Journal</string>
+    </array>
+
+    <key>ThrottleInterval</key>
+    <integer>60</integer>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>HOME</key>
+        <string>/Users/lyndsey</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/lyndsey/.claude/scripts/daily-digest.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/lyndsey/.claude/scripts/daily-digest.log</string>
+</dict>
+</plist>
