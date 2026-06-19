@@ -46,91 +46,26 @@ if (reviewYearStr) title += ` Y${reviewYearStr}`;
 title += ' Review';
 
 const dailyFolder = app.internalPlugins.plugins['daily-notes']?.instance?.options?.folder ?? '📓Journal';
+const targetPath = dailyFolder + '/' + title + '.md';
+const existingFile = app.vault.getAbstractFileByPath(targetPath);
+if (existingFile) {
+    const tempFile = app.workspace.getActiveFile();
+    await app.workspace.getLeaf(false).openFile(existingFile);
+    if (tempFile) await app.vault.delete(tempFile);
+    return;
+}
 await tp.file.move(dailyFolder + '/' + title);
 -%>
-### Weekly Review
-
-#### Task Creation
-
-- Create tasks for Ana's concerns, interests, or problems expressed this week
-- Create tasks to resolve events from last week
-- Create tasks to prepare for events in the upcoming week
-- Create tasks from last week's incomplete tasks
-- Create tasks from last week's journal notes
-- Follow up on things waiting for
-- Move projects closer to completion
-- Attend to issues in environment
-- Add major highlights from the past week, month, quarter, or year to current journal
-
->[!note]
->Quarters start on January 1st, April 1st, July 1st, and October 1st.
-
-#### Reflections
-
-##### What do I need?
-##### Work Attitudes check
-##### All big rocks for the week completed?
-##### What went well?
-##### What should be adjusted?
-##### What should I stop doing?
-##### What should I start doing?
-
-#### After Review
-
-- Categorize tasks in Inbox
-- Schedule tasks with definite deadlines
-- Review someday list
+<% tp.file.include("[[Weekly Review Template]]") %>
 <%* if (isMonthly) { -%>
 
-#### Monthly Review
-
-#GoalsForMonth
-
-##### Reflections
-
-###### What has improved?
-
-###### What still drains me?
-
-###### What do I want more of?
-
-##### Goals
-
-###### Goals from last month
-
-_Write down the goals you set out for yourself last month. Celebrate the ones you accomplished and make a plan for how to make more progress next month._
-
-###### Goals for next month
-
-_What are the goals you will set out for next month from the Quarter's goals? Do you have atomic habits to accomplish? Do you have the milestones created?_
+<% tp.file.include("[[Monthly Review Template]]") %>
 <%* } -%>
 <%* if (isQuarterly) { -%>
 
-#### Quarter Review
-
-#GoalsForQuarter
-
-##### Goals
-
-###### Goals from last quarter
-
-_Write down the goals you set out for yourself last quarter. Celebrate the ones you accomplished and make a plan for how to make more progress next quarter._
-
-###### Goals for next quarter
-
-_What are the goals you will set out for next quarter? Do you have atomic habits to accomplish? Do you have the milestones created?_
+<% tp.file.include("[[Quarter Review Template]]") %>
 <%* } -%>
 <%* if (isYearly) { -%>
 
-#### Year Review
-
-##### Goals
-
-###### Goals from last year
-
-_Write down the goals you set out for yourself last year. Celebrate the ones you accomplished and make a plan for how to make more progress next year._
-
-###### Goals for next year
-
-_What are the goals you will set out for next year? Do you have atomic habits to accomplish? Do you have the milestones created?_
+<% tp.file.include("[[Year Review Template]]") %>
 <%* } -%>
