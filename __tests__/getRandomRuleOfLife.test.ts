@@ -1,4 +1,4 @@
-const getRandomRuleOfLife = require('../getRandomRuleOfLife');
+const getRandomRuleOfLife = require('../Scripts/getRandomRuleOfLife');
 
 beforeAll(() => {
   jest.spyOn(global.Math, 'random').mockReturnValue(0.123456789);

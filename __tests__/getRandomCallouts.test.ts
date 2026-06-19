@@ -1,6 +1,6 @@
 const {
     getAllFilesWithCalloutsWithGivenTypes
-} = require('../getRandomCountOfCalloutsWithGivenTypes');
+} = require('../Scripts/getRandomCountOfCalloutsWithGivenTypes');
 
 beforeAll(() => {
   jest.spyOn(global.Math, 'random').mockReturnValue(0.123456789);
