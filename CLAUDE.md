@@ -18,7 +18,7 @@ These run **inside Obsidian** via the Templater plugin as user scripts. They rel
 - `getRandomRuleOfLife.js` — called from the Journal Entry Template to display a random rule from `⭐️Lyndsey's Rules for Life.md`
 - `getRandomCountOfCalloutsWithGivenTypes.js` — finds vault files containing specific callout types
 
-**Testing**: `testHelpers.ts` is a Jest `setupFiles` entry that installs a global `app` mock, replacing `vault.cachedRead` with a local `fs.readFile` and `vault.getFiles` with a directory scan. This lets tests run against `TestFixtures/` files without Obsidian. Tests live in `Scripts/__tests__/`.
+**Testing**: `testHelpers.ts` is a Jest `setupFiles` entry that installs a global `app` mock, replacing `vault.cachedRead` with a local `fs.readFile` and `vault.getFiles` with a directory scan. This lets tests run against `TestFixtures/` files without Obsidian. Tests live in `__tests__/` at the repo root. Pure date/logic helpers extracted for testing live in `lib/` (e.g. `lib/fridayReviewDateLogic.js`, covered by `__tests__/fridayReviewDateLogic.test.js`).
 
 ### Python automation scripts (`Scripts/*.py`)
 Standalone CLI scripts that run outside Obsidian, invoked from Terminal (triggered by buttons in Obsidian notes via `osascript`, or by launchd). They use the `claude` CLI at `/opt/homebrew/bin/claude` for AI calls. The live copies that actually run are in `~/.claude/scripts/` — the copies here are backups.
