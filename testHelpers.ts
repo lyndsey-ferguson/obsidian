@@ -1,5 +1,13 @@
-const fs = require('fs');
 const path = require('path');
+const glob = require('glob');
+
+function tfileFromPath(filepath) {
+  return {
+    basename: path.basename(filepath),
+    extension: path.extname(filepath),
+    path: filepath
+  }
+}
 
 function localFileRead(path) {
   return new Promise((resolve, reject) => {
@@ -14,40 +22,18 @@ function localFileRead(path) {
   });
 }
 
-function asyncGetFiles() {
-  return new Promise((resolve, reject) => {
-    const directoryPath = './'; // Replace with your directory path
-
-    fs.readdir(directoryPath, (err, filePaths) => {
-      if (err !== null) {
-        reject(err);
-      } else {
-        let files = [];
-        for (let i = 0; i < filePaths.length; i++) {
-          let fp = filePaths[i];
-          let file = {
-            basename: path.basename(fp),
-            path: fp,
-            extension: path.extname(fp),
-          };
-          files.push(file); 
-        }
-        resolve(files);
-      }
-    }, { recursive: true });
-  });
-}
-async function getFiles() {
-  let files = await asyncGetFiles();
-  return files;
+async function localGetMarkdownFiles() {
+  const filepaths = await glob.glob('**/*.md', { ignore: 'node_modules/**' });
+  return filepaths.map((filepath) => tfileFromPath(filepath))
 }
 
 function mockObsidianApp() {
   return {
     vault : {
-      getFileByPath : jest.fn(path => path),
-      cachedRead: jest.fn(path => localFileRead(path)),
-      getFiles: jest.fn(async () => getFiles())
+      getFileByPath : jest.fn(filepath => tfileFromPath(filepath)),
+      cachedRead: jest.fn(tfile => localFileRead(tfile.path)),
+      getMarkdownFiles: jest.fn(() => localGetMarkdownFiles()),
+      getFiles: jest.fn(() => localGetMarkdownFiles())
     }
   };
 }
